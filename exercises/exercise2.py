@@ -24,10 +24,6 @@ def data_extraction_csv(path):
 ############################################
 ############ Data Transformation ###########
 ############################################
-def fitDataType(df):
-    return df
-
-
 def data_transformation(data_frame):
     t1 = time()
     print("Data Transformation in progress...")
@@ -77,7 +73,7 @@ def data_loader(data_frame, table_name):
     t1 = time()
     print("SQLite DB Operations....")
     engine = create_engine("sqlite:///trainstops.sqlite")
-    data_frame.to_sql(table_name, engine, if_exists="replace")
+    data_frame.to_sql(table_name, engine, if_exists="replace", index=False)
     t2 = time()
     print("Finish: Data Loading  {} s ".format(t2 - t1))
 
