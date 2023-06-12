@@ -18,6 +18,10 @@ jobs:
       with:
         python-version: 3.11
 
+    - name: Install dependencies
+      run: |
+        pip install sqlalchemy pandas numpy
+
     - name: Run tests
       run: |
         echo "=== Executing pipeline ==="
@@ -34,4 +38,4 @@ jobs:
         echo "=== Running Tests ==="
         python ./project/test.py
 
-        echo "All done"
+        echo "=== All Tests Done ==="
