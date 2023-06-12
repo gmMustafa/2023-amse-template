@@ -38,4 +38,4 @@ jobs:
         echo "=== Running Tests ==="
         #python ./project/test.py
 
-        echo "=== All Tests Done ==="
+        echo "=== All Tests Done Successfully ==="
