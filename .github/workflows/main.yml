@@ -24,8 +24,6 @@ jobs:
 
     - name: Run tests
       run: |
-        cd Project  # Change directory to the 'data' folder
-        chmod +x ./test.sh  # Make the 'test.sh' file executable
-        ./test.sh  # Execute the 'test.sh' script
-
-        echo "=== All Tests Done Successfully ==="
+          chmod +x ./project/test.sh
+          ./project/test.sh
+          echo "=== All Tests Done Successfully ==="
