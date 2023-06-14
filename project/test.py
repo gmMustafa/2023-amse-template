@@ -26,7 +26,7 @@ def test_transformation(data, rename_col, drop_col):
 
 
 def test_data_loader(table_name):
-    existing_engine = create_engine(f"sqlite:///data/nuremberg_stops_immoscout.sqlite")
+    existing_engine = create_engine(f"sqlite:///./data/nuremberg_stops_immoscout.sqlite")
     engine = get_engine(existing_engine)
 
     # Create an inspector object
