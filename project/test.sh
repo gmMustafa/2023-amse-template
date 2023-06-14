@@ -8,7 +8,7 @@ echo "=== Executing pipeline ==="
 
 
 # Execute your pipeline
-python project/data/pipline.py
+python project/data/pipeline.py
 
 # Validate the output file(s)
 if [ -f "project/data/nuremberg_stops_immoscout.sqlite" ]; then
