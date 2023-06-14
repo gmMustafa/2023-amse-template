@@ -3,23 +3,18 @@ import pandas as pd
 
 from data.pipeline import (
     data_extraction_xls,
-    data_extraction_csv,
     data_transformation,
-    data_loader,
+    get_engine
 )
+
+# Db_Engine
+db_engine = None
 
 
 def test_xls_extract(path):
     df = data_extraction_xls(path)
     assert not df.empty, "XLS Extraction Failed"
     print("test_xls_extract: Test Passed")
-    return df
-
-
-def test_csv_extract(path):
-    df = data_extraction_csv(path)
-    assert not df.empty, "CSV Extraction Failed"
-    print("test_csv_extract: Test Passed")
     return df
 
 
@@ -31,7 +26,8 @@ def test_transformation(data, rename_col, drop_col):
 
 
 def test_data_loader(table_name):
-    engine = create_engine("sqlite:///nuremberg_stops_immoscout.db")
+    existing_engine = create_engine(f"sqlite:///data/nuremberg_stops_immoscout.sqlite")
+    engine = get_engine(existing_engine)
 
     # Create an inspector object
     inspector = inspect(engine)
@@ -43,14 +39,14 @@ def test_data_loader(table_name):
 
 
 def test_pipeline():
-    path1 = r"D:\Education\MS-AI\Sem-2\Data_Engineering_[OSS-AMSE]\2023-amse-template\project\datasets\Immoscout24.csv"
-    df1 = test_csv_extract(path1)
-    df1 = test_transformation(df1, [], ["picturecount", "scoutId"])
+    path1 = "https://docs.google.com/spreadsheets/d/1yIMw92dv7yeztmDHAt8mvO74jFhTc9dS/export?format=xlsx"
+    df1 = test_xls_extract(path1)
+    test_transformation(df1, [], ["picturecount", "scoutId"])
     test_data_loader("immoscout")
 
-    path2 = r"D:\Education\MS-AI\Sem-2\Data_Engineering_[OSS-AMSE]\2023-amse-template\project\datasets\Nuremberg_Stops_IDs_and_geodata.xlsx"
+    path2 = "https://docs.google.com/spreadsheets/d/19ASmxyaSSeiuWbagvZmzixJr261bTkoQ/export?format=xlsx"
     df2 = test_xls_extract(path2)
-    df2 = test_transformation(df2, {
+    test_transformation(df2, {
         "VGNKennung": "VAGIdentifier",
         "VAGKennung": "VAGIdentifierChar",
         "Haltepunkt": "breakpoint",
