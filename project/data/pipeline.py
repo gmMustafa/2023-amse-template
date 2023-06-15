@@ -93,8 +93,8 @@ def main():
 
 def get_engine(db_engine=None):
     if db_engine is None:
-        db_path = "./nuremberg_stops_immoscout.sqlite"
-        db_engine = create_engine(f"sqlite:///{db_path}")
+        db_path = "./project/data/nuremberg_stops_immoscout.sqlite"
+        db_engine = create_engine(f"sqlite:////{db_path}")
     return db_engine
 
 # def get_engine(db_engine=None):
