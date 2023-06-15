@@ -16,4 +16,5 @@ echo "=== Running Tests ==="
 python project/test.py
 #python test.py
 
-read -p "Press any key to continue... " -n1 -s
+#read -p "Press any key to continue... " -n1 -s
+exit 0
