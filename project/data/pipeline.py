@@ -85,24 +85,11 @@ def main():
     data_loader(df2, "nuremberg_stops")
 
 
-# def get_engine(db_engine=None):
-#     if db_engine == None:
-#         db_path = "project/data/nuremberg_stops_immoscout.sqlite"
-#         db_engine = create_engine(f"sqlite:///{db_path}")
-#     return db_engine
-
 def get_engine(db_engine=None):
     if db_engine is None:
-        db_path = "./project/data/nuremberg_stops_immoscout.sqlite"
-        db_engine = create_engine(f"sqlite:////{db_path}")
+        db_path = os.path.join(os.getcwd(), "data", "nuremberg_stops_immoscout.sqlite")
+        db_engine = create_engine(f"sqlite:///{db_path}")
     return db_engine
-
-# def get_engine(db_engine=None):
-#     if db_engine is None:
-#         script_dir = os.path.dirname(os.path.abspath(__file__))
-#         db_path = os.path.join(script_dir, "data", "nuremberg_stops_immoscout.sqlite")
-#         db_engine = create_engine(f"sqlite:///{db_path}")
-#     return db_engine
 
 if __name__ == "__main__":
     main()

@@ -8,7 +8,7 @@ echo "=== Executing pipeline ==="
 
 
 # Execute your pipeline
-python project/data/pipeline.py
+python "$project_dir/data/pipeline.py"
 
 # Validate the output file(s)
 if [ -f "./project/data/nuremberg_stops_immoscout.sqlite" ]; then
@@ -18,6 +18,6 @@ else
 fi
 
 echo "=== Running Tests ==="
-python project/test.py
+python "$project_dir/test.py"
 
 read -p "Press any key to continue... " -n1 -s
