@@ -1,10 +1,8 @@
 from sqlalchemy import create_engine, inspect
-import os
 
 from data.pipeline import (
     data_extraction_xls,
-    data_transformation,
-    get_engine
+    data_transformation
 )
 
 # Db_Engine
@@ -26,8 +24,7 @@ def test_transformation(data, rename_col, drop_col):
 
 
 def test_data_loader(table_name):
-    existing_engine = create_engine(f"sqlite:///{os.getcwd()}/data/nuremberg_stops_immoscout.sqlite")
-    engine = get_engine(existing_engine)
+    engine = create_engine(f"sqlite:///nuremberg_stops_immoscout.sqlite")
 
     # Create an inspector object
     inspector = inspect(engine)

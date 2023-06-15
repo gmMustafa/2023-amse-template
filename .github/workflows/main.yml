@@ -20,7 +20,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install sqlalchemy pandas numpy openpyxl
+        pip install sqlalchemy pandas numpy openpyxl sqlite3
 
     - name: Run tests
       run: |

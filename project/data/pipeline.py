@@ -1,11 +1,7 @@
 import pandas as pd
 import numpy as np
-from sqlalchemy import create_engine
 from time import time
-import os
-
-# Db_Engine
-db_engine = None
+import sqlite3
 
 
 ############################################
@@ -51,11 +47,16 @@ def data_transformation(data_frame, rename_col, drop_col):
 ############################################
 ################# Load Data ################
 ############################################
-def data_loader(data_frame, table_name):
+def data_loader(db_file, data_frame, table_name):
     t1 = time()
     print("SQLite DB Operations....")
-    engine = get_engine(db_engine)
-    data_frame.to_sql(table_name, engine, if_exists="replace")
+    # Connect to the SQLite databases
+    conn = sqlite3.connect(db_file)
+
+    # Store the data in the specified tabless
+    data_frame.to_sql(table_name, conn, if_exists='replace', index=False)
+    # Close the database connection
+    conn.close()
     t2 = time()
     print("Finish: Data Loading  {} s ".format(t2 - t1))
 
@@ -65,7 +66,7 @@ def main():
     df1 = data_extraction_xls(path_Immoscout24)
     df1_drop_cols = ["picturecount", "scoutId"]
     df1 = data_transformation(df1, [], df1_drop_cols)
-    data_loader(df1, "immoscout")
+    data_loader("nuremberg_stops_immoscout.sqlite", df1, "immoscout")
 
     path_nuremberg = "https://docs.google.com/spreadsheets/d/19ASmxyaSSeiuWbagvZmzixJr261bTkoQ/export?format=xlsx"
     df2 = data_extraction_xls(path_nuremberg)
@@ -82,14 +83,8 @@ def main():
         "Dataprovider": "dataprovider",
     }
     df2 = data_transformation(df2, df2_rename_cols, df2_drop_cols)
-    data_loader(df2, "nuremberg_stops")
+    data_loader("nuremberg_stops_immoscout.sqlite", df2, "nuremberg_stops")
 
-
-def get_engine(db_engine=None):
-    if db_engine is None:
-        db_path = os.path.join(os.getcwd(), "data", "nuremberg_stops_immoscout.sqlite")
-        db_engine = create_engine(f"sqlite:///{db_path}")
-    return db_engine
 
 if __name__ == "__main__":
     main()
