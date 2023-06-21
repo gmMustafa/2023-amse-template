@@ -71,7 +71,7 @@ pipeline CarPipeline
 	block DBLoader oftype SQLiteLoader
     {
 		table: "cars";
-		file: "./cars.sqlite";
+		file: "cars.sqlite";
 	}
 
     DataExtraction
