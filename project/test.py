@@ -38,7 +38,17 @@ def test_data_loader(table_name):
 def test_pipeline():
     path1 = "https://docs.google.com/spreadsheets/d/1yIMw92dv7yeztmDHAt8mvO74jFhTc9dS/export?format=xlsx"
     df1 = test_xls_extract(path1)
+    df1_drop_cols = ["picturecount", "scoutId", "geo_bln", "geo_krs"]
+
+    test_transformation(df1, {
+        "regio1": "federalState",
+        "geo_plz": "zipCode",
+        "regio2": "district",
+        "regio3": "cityTown"
+    }, df1_drop_cols)
+
     test_transformation(df1, [], ["picturecount", "scoutId"])
+
     test_data_loader("immoscout")
 
     path2 = "https://docs.google.com/spreadsheets/d/19ASmxyaSSeiuWbagvZmzixJr261bTkoQ/export?format=xlsx"
