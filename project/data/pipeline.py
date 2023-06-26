@@ -64,8 +64,14 @@ def data_loader(db_file, data_frame, table_name):
 def main():
     path_Immoscout24 = "https://docs.google.com/spreadsheets/d/1yIMw92dv7yeztmDHAt8mvO74jFhTc9dS/export?format=xlsx"
     df1 = data_extraction_xls(path_Immoscout24)
-    df1_drop_cols = ["picturecount", "scoutId"]
-    df1 = data_transformation(df1, [], df1_drop_cols)
+    df1_drop_cols = ["picturecount", "scoutId", "geo_bln", "geo_krs"]
+    df1_rename_cols = {
+        "regio1": "federalState",
+        "geo_plz": "zipCode",
+        "regio2": "district",
+        "regio3": "cityTown"
+    }
+    df1 = data_transformation(df1, df1_rename_cols, df1_drop_cols)
     data_loader("nuremberg_stops_immoscout.sqlite", df1, "immoscout")
 
     path_nuremberg = "https://docs.google.com/spreadsheets/d/19ASmxyaSSeiuWbagvZmzixJr261bTkoQ/export?format=xlsx"
