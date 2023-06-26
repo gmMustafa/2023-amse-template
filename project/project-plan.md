@@ -22,12 +22,10 @@ Data Type: xlsx
 This dataset contains rental property listings on Immoscout24, the largest real estate platform in Germany, including information on rental prices, property attributes, and location.
 
 ## Work Packages
-- [x] : Find usable open data sources
-- [x] : Build data pipelines
-- [x] : Data cleaning and preprocessing
-- [ ] : Exploratory data analysis
-- [ ] : Spatial analysis
-- [ ] : Visualization and reporting
-- [ ] : Implement automated testing
-- [ ] : Add continous integration
-- [ ] : Deploy project
+- [x] : Find usable open data sources [[#5](https://github.com/gmMustafa/2023-amse-template/issues/5)]
+- [x] : Data cleaning and preprocessing [[#12](https://github.com/gmMustafa/2023-amse-template/issues/12)]
+- [x] : Extract, Transform, Load [[#6](https://github.com/gmMustafa/2023-amse-template/issues/6) ][[#7](https://github.com/gmMustafa/2023-amse-template/issues/7)]
+- [x] : Implement automated pipeline [[#8](https://github.com/gmMustafa/2023-amse-template/issues/8)]
+- [x] : Implement automated testing [[#10](https://github.com/gmMustafa/2023-amse-template/issues/10)]
+- [x] : Exploratory data analysis [[#9](https://github.com/gmMustafa/2023-amse-template/issues/9)]
+- [x] : Visualization and reporting [[#13](https://github.com/gmMustafa/2023-amse-template/issues/13)]
